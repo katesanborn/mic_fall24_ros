@@ -1,4 +1,9 @@
 {
   "components": {},
-  "dependencies": {}
+  "dependencies": {},
+  "seeds": {
+      "ROSLaunch": {
+        "src": "src/seeds/ROSLaunch"
+      }
+    }
 }

@@ -7,7 +7,7 @@ var config = require('webgme/config/config.default'),
     validateConfig = require('webgme/config/validator');
 
 // The paths can be loaded from the webgme-setup.json
-
+config.seedProjects.basePaths.push(__dirname + '/../src/seeds/ROSLaunch');
 
 
 
@@ -15,9 +15,10 @@ var config = require('webgme/config/config.default'),
 
 
 // Visualizer descriptors
-
+config.visualization.visualizerDescriptors.push(__dirname + '/../src/visualizers/Visualizers.json');
 // Add requirejs paths
 config.requirejsPaths = {
+  'panels': './src/visualizers/panels',
   'mic_fall24_ros': './src/common'
 };
 

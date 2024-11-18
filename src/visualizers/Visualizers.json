@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": "ROSLaunch",
+        "title": "ROSLaunch",
+        "panel": "panels/ROSLaunch/ROSLaunch",
+        "DEBUG_ONLY": false
+      }
+]
