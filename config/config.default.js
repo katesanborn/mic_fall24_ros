@@ -8,4 +8,5 @@ var config = require('./config.webgme'),
 // config.mongo.uri = 'mongodb://127.0.0.1:27017/webgme_my_app';
 
 validateConfig(config);
+config.plugin.allowServerExecution = true;
 module.exports = config;

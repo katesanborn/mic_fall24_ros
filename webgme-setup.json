@@ -9,7 +9,12 @@
         "widget": "src/visualizers/widgets/ROSLaunch"
       }
     },
-    "plugins": {},
+    "plugins": {
+      "ExportLaunch": {
+        "src": "src/plugins/ExportLaunch",
+        "test": "test/plugins/ExportLaunch"
+      }
+    },
     "seeds": {
       "ROSLaunch": {
         "src": "src/seeds/ROSLaunch"
