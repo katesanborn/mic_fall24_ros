@@ -1,9 +1,24 @@
 {
-  "components": {},
-  "dependencies": {},
-  "seeds": {
+  "components": {
+    "visualizers": {
+      "SimSM": {
+        "src": "panels/ROSLaunch/ROSLaunch",
+        "title": "ROSLaunch",
+        "panel": "src/visualizers/panels/ROSLaunch",
+        "secondary": false,
+        "widget": "src/visualizers/widgets/ROSLaunch"
+      }
+    },
+    "plugins": {},
+    "seeds": {
       "ROSLaunch": {
         "src": "src/seeds/ROSLaunch"
       }
     }
+  },
+  "dependencies": {
+    "visualizers": {},
+    "plugins": {},
+    "seeds": {}
+  }
 }
