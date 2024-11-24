@@ -12,7 +12,6 @@ config.seedProjects.basePaths.push(__dirname + '/../src/seeds/ROSLaunch');
 
 
 
-config.visualization.panelPaths.push(__dirname + '/../src/visualizers/panels');
 
 
 
