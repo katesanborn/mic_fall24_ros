@@ -16,7 +16,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-class PythonPlugin(PluginBase):
+class ImportLaunch(PluginBase):
   def main(self):
     core = self.core
     active_node = self.active_node
@@ -41,14 +41,14 @@ class PythonPlugin(PluginBase):
         {
           "tag": "Node",
           "attributes": {
-            "name": "argNumber",
+            "name": "ARG",
             "pkg": "number",
             "type": "argNumber.py",
             "args": "$(arg negativeOne)"
           },
           "children": [],
-          "metatype": "argNumber",
-          "base": "NODE:argNumber"
+          "metatype": "ARG",
+          "base": "NODE:ARG"
         },
         {
           "tag": "Node",
