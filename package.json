@@ -22,6 +22,7 @@
     "webgme": "^2.23.0"
   },
   "dependencies": {
+    "mic_fall24_ros": "file:",
     "webgme-bindings": "latest"
   }
 }
