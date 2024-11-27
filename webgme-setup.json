@@ -9,6 +9,10 @@
       "MakeConnections": {
         "src": "src/plugins/MakeConnections",
         "test": "test/plugins/MakeConnections"
+      },
+      "ImportLaunch": {
+        "src": "src/plugins/ImportLaunch",
+        "test": "test/plugins/ImportLaunch"
       }
     },
     "seeds": {
