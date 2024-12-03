@@ -11,5 +11,14 @@
   "disableBrowserSideExecution": true,
   "dependencies": [],
   "writeAccessRequired": false,
-  "configStructure": []
+  "configStructure": [
+    {
+      "name": "file",
+      "displayName": "Input",
+      "description": "Input launch file to build model from",
+      "value": "",
+      "valueType": "asset",
+      "readOnly": false
+    }
+  ]
 }

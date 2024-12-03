@@ -27,10 +27,9 @@ class ImportLaunch(PluginBase):
             return "argument"
         return tag.lower()  # Default to lowercase
 
-    def parse_ros_launch(self, file_path):
+    def parse_ros_launch(self, xml_string):
         """Parses a ROS launch file into a structured dictionary."""
-        tree = ET.parse(file_path)
-        root = tree.getroot()
+        root = ET.fromstring(xml_string)
 
         def parse_element(element):
             """
@@ -59,11 +58,11 @@ class ImportLaunch(PluginBase):
         active_node = self.active_node
         logger = self.logger
 
-        # Path to the input ROS launch file
-        ros_launch_file = "/path/to/Formula.launch"  # Replace with your file path
+        config = self.get_current_config()
+        input = self.get_file(config['file'])
 
         # Parse the ROS launch file into a structured dictionary
-        launch_data = self.parse_ros_launch(ros_launch_file)
+        launch_data = self.parse_ros_launch(input)
         meta_types = ["LaunchFile", "Include", "Argument", "Remap", "Group", "Parameter", "rosparam", "Node", "Topic", "GroupPublisher", "GroupSubscriber", "Subscriber", "Publisher"]
 
         def get_type(node):
@@ -152,17 +151,6 @@ class ImportLaunch(PluginBase):
 
                         for attr, value in attributes.items():
                             core.set_attribute(child_node, attr, value)
-
-                        if "pkg" in attributes:
-                            existing_publishers = [
-                                core.get_attribute(existing_child, "name")
-                                for existing_child in core.load_children(child_node)
-                                if get_type(existing_child) == "Publisher"
-                            ]
-                            if attributes["pkg"] not in existing_publishers:
-                                publisher_node = core.create_child(child_node, self.META["Publisher"])
-                                core.set_attribute(publisher_node, "name", attributes["pkg"])
-                                logger.info(f"Added publisher: {attributes['pkg']} to node {name_attribute}.")
 
                     create_child_nodes(child_node, child)
 
