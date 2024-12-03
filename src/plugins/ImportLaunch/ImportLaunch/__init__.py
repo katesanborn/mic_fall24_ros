@@ -135,6 +135,10 @@ class ImportLaunch(PluginBase):
                 """
                 for child in data.get("children", []):
                     tag = child.get("tag").capitalize()
+                    
+                    if tag == "Rosparam":
+                        tag = "rosparam"
+                    
                     attributes = child.get("attributes", {})
                     name_attribute = attributes.get("name")
 
@@ -149,8 +153,8 @@ class ImportLaunch(PluginBase):
                         child_node = core.create_child(parent_node, self.META.get(tag, None) if tag in self.META else None)
                         logger.info(f"Created new node: {name_attribute} with attributes from input.")
 
-                        for attr, value in attributes.items():
-                            core.set_attribute(child_node, attr, value)
+                    for attr, value in attributes.items():
+                        core.set_attribute(child_node, attr, value)
 
                     create_child_nodes(child_node, child)
 
