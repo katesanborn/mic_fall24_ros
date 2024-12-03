@@ -16,8 +16,9 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-class ExportLaunch(PluginBase,indent=0):
+class ExportLaunch(PluginBase):
     def main(self):
+        indent=0
         active_node = self.active_node
         core = self.core
         logger = self.logger
@@ -143,15 +144,15 @@ class ExportLaunch(PluginBase,indent=0):
                     # Recursively process children of the group
                     result += xmlGenerator(child, indent + 4,topLevel = False)
                     #result += f"{' ' * (indent + 2)}</param>\n"
-                if name:
-                    attributes.append(f'name="{name}"')
-                if command:
-                    attributes.append(f'command="{command}"')
-                if value:
-                    attributes.append(f'value="{value}"')
-                    attribute_string = " ".join(attributes)
-                if attribute_string:
-                    result += f"{' ' * (indent + 2)}<param {attribute_string}/>\n"
+                    if name:
+                        attributes.append(f'name="{name}"')
+                    if command:
+                        attributes.append(f'command="{command}"')
+                    if value:
+                        attributes.append(f'value="{value}"')
+                        attribute_string = " ".join(attributes)
+                    if attribute_string:
+                        result += f"{' ' * (indent + 2)}<param {attribute_string}/>\n"
                 
                 elif base_Name == "rosparam":
                     attributes = []
@@ -177,18 +178,18 @@ class ExportLaunch(PluginBase,indent=0):
                     result += xmlGenerator(child, indent + 4,topLevel = False)
                     result += f"{' ' * (indent + 2)}</rosParam>\n"
                 
-                if topLevel:
-                    result += " " * indent + "</launch>\n"
-                return result
+            if topLevel:
+                result += " " * indent + "</launch>\n"
+            return result
             
-            output = xmlGenerator(active_node)
-            logger.info(f"output {output}")
-            file_name = 'output.launch'
-            file_hash = self.add_file(file_name, output)
-            logger.info(f"Output saved to file with hash: {file_hash}")
-            #artifact_name = core.get_attribute(active_node, 'name') + '_LaunchArtifact'
-            #artifact = {core.get_attribute(active_node, 'name') + '.launch': output}
+        output = xmlGenerator(active_node)
+        logger.info(f"output {output}")
+        file_name = 'output.launch'
+        file_hash = self.add_file(file_name, output)
+        logger.info(f"Output saved to file with hash: {file_hash}")
+        #artifact_name = core.get_attribute(active_node, 'name') + '_LaunchArtifact'
+        #artifact = {core.get_attribute(active_node, 'name') + '.launch': output}
 
-            # Add the artifact to the plugin
-            #self.add_artifact(artifact_name, artifact)
-            #logger.info(f"Launch file exported as artifact: {artifact_name}")
+        # Add the artifact to the plugin
+        #self.add_artifact(artifact_name, artifact)
+        #logger.info(f"Launch file exported as artifact: {artifact_name}")
