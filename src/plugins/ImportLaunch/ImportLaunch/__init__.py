@@ -25,6 +25,8 @@ class ImportLaunch(PluginBase):
         """
         if tag.lower() == "arg":  # Special case for 'arg'
             return "argument"
+        if tag.lower() == "param":
+            return "parameter"
         return tag.lower()  # Default to lowercase
 
     def parse_ros_launch(self, xml_string):
