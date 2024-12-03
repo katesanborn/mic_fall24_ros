@@ -110,9 +110,6 @@ class ExportLaunch(PluginBase):
                     if remap_to:
                         attributes.append(f'to="{remap_to}"')
                         attribute_string = " ".join(attributes)
-                    if name:
-                        attributes.append(f'name="{name}"')
-                        attribute_string = " ".join(attributes)
                         
                     result += f"{' ' * (indent + 2)}<remap {attribute_string}/>\n"
                 
@@ -150,7 +147,7 @@ class ExportLaunch(PluginBase):
                         attributes.append(f'command="{command}"')
                     if value:
                         attributes.append(f'value="{value}"')
-                        attribute_string = " ".join(attributes)
+                    attribute_string = " ".join(attributes)
                     if attribute_string:
                         result += f"{' ' * (indent + 2)}<param {attribute_string}/>\n"
                 
@@ -162,17 +159,15 @@ class ExportLaunch(PluginBase):
                     param = core.get_attribute(child, 'param')
                     #result += f"{' ' * (indent + 2)}<rosParam name=\"{name}\" command=\"{command}\" file = \"{file}\" param = \"{param}\">\n"
                     # Recursively process children of the group
-                    if name:
-                        attributes.append(f'name="{name}"')
                     if command:
                         attributes.append(f'command="{command}"')
                     if file:
                         attributes.append(f'file="{file}"')
                     if param:
                         attributes.append(f'param="{param}"')
-                        attribute_string = " ".join(attributes)
+                    attribute_string = " ".join(attributes)
                     if attribute_string:
-                        result += f"{' ' * (indent + 2)}<rosParam {attribute_string}/>\n"           
+                        result += f"{' ' * (indent + 2)}<rosparam {attribute_string}>\n"           
                     
                         
                     result += xmlGenerator(child, indent + 4,topLevel = False)
