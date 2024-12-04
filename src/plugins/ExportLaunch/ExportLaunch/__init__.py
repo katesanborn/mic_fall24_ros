@@ -171,7 +171,7 @@ class ExportLaunch(PluginBase):
                     
                         
                     result += xmlGenerator(child, indent + 4,topLevel = False)
-                    result += f"{' ' * (indent + 2)}</rosParam>\n"
+                    result += f"{' ' * (indent + 2)}</rosparam>\n"
                 
             if topLevel:
                 result += " " * indent + "</launch>\n"
