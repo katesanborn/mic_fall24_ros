@@ -156,7 +156,12 @@ class ImportLaunch(PluginBase):
                         logger.info(f"Created new node: {name_attribute} with attributes from input.")
 
                     for attr, value in attributes.items():
-                        core.set_attribute(child_node, attr, value)
+                        if value.lower() == "true":
+                            core.set_attribute(child_node, attr, True)
+                        elif value.lower() == "false":
+                            core.set_attribute(child_node, attr, False)
+                        else:
+                            core.set_attribute(child_node, attr, value)
 
                     create_child_nodes(child_node, child)
 
